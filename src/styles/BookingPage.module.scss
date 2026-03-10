@@ -1,0 +1,95 @@
+.container {
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f0f2f5;
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(225,39%,30%,0.05) 0, transparent 50%), 
+    radial-gradient(at 50% 0%, hsla(225,39%,20%,0.02) 0, transparent 50%), 
+    radial-gradient(at 100% 0%, hsla(225,39%,30%,0.05) 0, transparent 50%);
+  position: relative;
+
+  @media (min-width: 768px) {
+    padding: 60px 40px;
+  }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 20px 0;
+
+  h2 {
+    font-weight: 700 !important;
+    margin-bottom: 8px !important;
+    background: linear-gradient(135deg, #1890ff 0%, #722ed1 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  span {
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    color: #64748b;
+  }
+}
+
+.card {
+  border: none !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -6px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  :global(.ant-card-head-title) {
+    font-weight: 600;
+  }
+}
+
+.pickerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  @media (min-width: 992px) {
+    flex-direction: row;
+
+    .calendarArea {
+      flex: 1.2;
+      border-right: 1px solid #f1f5f9;
+      padding-right: 32px;
+    }
+
+    .slotsArea {
+      flex: 1;
+      padding-left: 32px;
+    }
+  }
+
+  /* Calendar styling on mobile */
+  :global(.ant-picker-calendar-header) {
+    padding: 12px 0 !important;
+  }
+}
+
+.emptyForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 2px dashed #e2e8f0;
+  text-align: center;
+}
+
+.centerLoad {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

@@ -1,0 +1,36 @@
+.slotGrid {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 8px;
+
+  /* Custom Scrollbar for slots */
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #d9d9d9;
+    border-radius: 4px;
+  }
+}
+
+.slotBtn {
+  height: 40px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+
+  &.booked {
+    background-color: #ffe4e6 !important;
+    border-color: #fecdd3 !important;
+    color: #be123c !important;
+    cursor: not-allowed;
+    text-decoration: line-through;
+  }
+
+  &.past {
+    background-color: #f3f4f6 !important;
+    border-color: #e5e7eb !important;
+    color: #9ca3af !important;
+    cursor: not-allowed;
+  }
+}
