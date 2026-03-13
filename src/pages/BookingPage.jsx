@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Spin, Row, Col, Typography, Card, Calendar, message, Badge, Result, Button, FloatButton } from 'antd';
-import { UserOutlined, CalendarOutlined, LoginOutlined } from '@ant-design/icons';
+import { UserOutlined, CalendarOutlined, LoginOutlined, InfoCircleOutlined, GithubOutlined, RocketOutlined, WhatsAppOutlined, PhoneOutlined } from '@ant-design/icons';
+import { Spin, Row, Col, Typography, Card, Calendar, message, Badge, Result, Button, FloatButton, Modal, Space, Tooltip, Divider, Tag } from 'antd';
 import dayjs from 'dayjs';
 import { ProviderAPI, AppointmentAPI } from '../api';
 import BookingForm from '../components/BookingForm';
@@ -22,6 +22,7 @@ const BookingPage = () => {
     // Selection State
     const [selectedDate, setSelectedDate] = useState(dayjs());
     const [selectedSlot, setSelectedSlot] = useState(null);
+    const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
 
     // Slots State
     const [slotsLoading, setSlotsLoading] = useState(false);
@@ -121,9 +122,17 @@ const BookingPage = () => {
 
     return (
         <div className={styles.container}>
-            <div className={styles.header}>
-                <Title level={2}><UserOutlined /> {provider.full_name}</Title>
-                <Text type="secondary">Xidmət qeydiyyat sistemi</Text>
+            <div className={styles.header} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                <div>
+                    <Title level={2}><UserOutlined /> {provider.full_name}</Title>
+                    <Text type="secondary">Xidmət qeydiyyat sistemi</Text>
+                </div>
+                <Button 
+                    type="text" 
+                    icon={<InfoCircleOutlined style={{ fontSize: '20px', color: '#1890ff' }} />} 
+                    onClick={() => setIsAboutModalOpen(true)}
+                    style={{ padding: '4px' }}
+                />
             </div>
 
             <Row gutter={[24, 24]} className={styles.contentRow}>
@@ -180,6 +189,92 @@ const BookingPage = () => {
                 onClick={() => window.location.href = '/login'}
                 style={{ right: 24, bottom: 24 }}
             />
+
+            <Modal
+                title="SiraMatik haqqında"
+                open={isAboutModalOpen}
+                onCancel={() => setIsAboutModalOpen(false)}
+                footer={null}
+                centered
+                width={500}
+                styles={{ 
+                    body: { padding: 0, overflow: 'hidden' },
+                    header: { padding: '16px 24px', margin: 0, borderBottom: '1px solid #f0f0f0' }
+                }}
+            >
+                <div style={{
+                    background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)',
+                    padding: '40px 24px',
+                    textAlign: 'center',
+                    color: '#fff'
+                }}>
+                    <Title level={3} style={{ color: '#fff', margin: '0 0 8px 0' }}>SiraMatik</Title>
+                    <Text style={{ color: 'rgba(255,255,255,0.8)', fontSize: '15px' }}>Gələcəyin Rezervasiya Sistemi</Text>
+                </div>
+                
+                <div style={{ padding: '32px 24px' }}>
+                    <div style={{ marginBottom: '24px' }}>
+                        <Title level={4} style={{ marginBottom: '12px' }}>SiraMatik nədir?</Title>
+                        <Text style={{ color: '#475569', lineHeight: '1.7', fontSize: '15px' }}>
+                            SiraMatik, xidmət sahəsində çalışan peşəkarlar (bərbərlər, həkimlər, ustalar və s.) üçün nəzərdə tutulmuş müasir onlayn rezervasiya platformasıdır. Bizim məqsədimiz həm müştərilərin vaxtına qənaət etmək, həm də xidmət verənlərin işini daha sistemli hala gətirməkdir.
+                        </Text>
+                    </div>
+
+                    <div style={{ marginBottom: '24px' }}>
+                        <Title level={5} style={{ marginBottom: '12px' }}>İstifadə qaydası:</Title>
+                        <ul style={{ paddingLeft: '20px', color: '#475569', lineHeight: '1.8' }}>
+                            <li>Təqvimdən sizə uyğun tarixi seçin.</li>
+                            <li>Açılan siyahıdan boş saatı müəyyən edin.</li>
+                            <li>Məlumatlarınızı daxil edin və "Sifarişi Təsdiqlə" düyməsinə basın.</li>
+                            <li>Sifarişiniz dərhal admin tərəfindən görüləcək!</li>
+                        </ul>
+                    </div>
+
+                    <Divider style={{ margin: '16px 0' }} />
+
+                    <div style={{ marginBottom: '24px' }}>
+                        <Title level={4} style={{ marginBottom: '12px' }}>Yaradıcı haqqında</Title>
+                        <Text style={{ color: '#475569', lineHeight: '1.7', fontSize: '15px' }}>
+                            Mən <strong>Ayxan Həsənzadə</strong>, Full-Stack Developer və SiraMatik proyektinin yaradıcısıyam. Kiçik və orta bizneslər üçün idarəetmə sistemlərindən tutmuş, mobil tətbiqlərə, veb saytlara və bütün növ rəqəmsal həllərin sıfırdan yığılmasına qədər peşəkar xidmət göstərirəm.
+                        </Text>
+                    </div>
+
+                    <Divider style={{ margin: '16px 0' }} />
+
+                    <div style={{ marginBottom: '24px' }}>
+                        <Title level={5} style={{ marginBottom: '12px' }}>Texnoloji Stack</Title>
+                        <Space wrap size={[12, 12]}>
+                            <Tag color="blue" bordered={false}>Java</Tag>
+                            <Tag color="red" bordered={false}>PHP</Tag>
+                            <Tag color="cyan" bordered={false}>MySQL</Tag>
+                            <Tag color="purple" bordered={false}>React</Tag>
+                            <Tag color="orange" bordered={false}>React Native (Mobile)</Tag>
+                        </Space>
+                    </div>
+
+                    <Divider style={{ margin: '16px 0' }} />
+
+                    <Title level={5} style={{ marginBottom: '16px' }}>Mənimlə əlaqə</Title>
+                    <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                        <Button 
+                            type="primary" 
+                            icon={<WhatsAppOutlined />} 
+                            href={`https://wa.me/994709111228?text=${encodeURIComponent('Salam, mən SiraMatik proqramından gəlirəm, sizə bir neçə sualım olacaqdı')}`}
+                            target="_blank"
+                            style={{ background: '#25D366', borderColor: '#25D366', borderRadius: '8px', height: '42px' }}
+                        >
+                            WhatsApp
+                        </Button>
+                        <Button 
+                            icon={<PhoneOutlined />} 
+                            href="tel:+994709111228"
+                            style={{ borderRadius: '8px', height: '42px' }}
+                        >
+                            Zəng et
+                        </Button>
+                    </div>
+                </div>
+            </Modal>
         </div>
     );
 };

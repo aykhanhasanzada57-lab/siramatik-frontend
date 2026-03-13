@@ -52,24 +52,29 @@ const DashboardPage = () => {
             title: 'Müştəri',
             dataIndex: 'customer_name',
             key: 'customer_name',
+            width: 140,
+            ellipsis: true,
             render: (text) => <Text strong>{text}</Text>
         },
         {
             title: 'Telefon',
             dataIndex: 'customer_phone',
             key: 'customer_phone',
+            width: 140,
         },
         {
             title: 'Tarix',
             dataIndex: 'booking_date',
             key: 'booking_date',
-            render: (date) => dayjs(date).format('DD MMMM YYYY'),
+            width: 100,
+            render: (date) => dayjs(date).format('DD MMM'),
             sorter: (a, b) => dayjs(a.booking_date).unix() - dayjs(b.booking_date).unix()
         },
         {
             title: 'Saat',
             dataIndex: 'start_time',
             key: 'start_time',
+            width: 80,
             render: (time) => <Tag color="blue">{time.substring(0, 5)}</Tag>,
         }
     ];
@@ -91,6 +96,7 @@ const DashboardPage = () => {
                         rowKey="id"
                         loading={loading}
                         pagination={{ pageSize: 10 }}
+                        scroll={{ x: 'max-content' }}
                     />
                 </Space>
             )
@@ -194,7 +200,16 @@ const DashboardPage = () => {
                 .ant-table-wrapper {
                     background: #fff;
                     border-radius: 12px;
-                    overflow: hidden;
+                }
+                @media (max-width: 576px) {
+                    .ant-table-cell {
+                        padding: 8px 4px !important;
+                        font-size: 13px;
+                    }
+                    .ant-tag {
+                        margin-right: 0;
+                        font-size: 11px;
+                    }
                 }
             `}</style>
         </Layout>
