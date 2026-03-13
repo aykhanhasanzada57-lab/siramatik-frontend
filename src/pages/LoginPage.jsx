@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Input, Button, Card, Typography, message } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { UserOutlined, LockOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import { AuthAPI } from '../api';
 import { useNavigate } from 'react-router-dom';
 
@@ -61,11 +61,20 @@ const LoginPage = () => {
                     <Form.Item name="password" label="Parol" rules={[{ required: true, message: 'Parolunuzu daxil edin!' }]}>
                         <Input.Password prefix={<LockOutlined style={{ color: '#bfbfbf' }} />} placeholder="••••••••" style={{ borderRadius: '12px' }} />
                     </Form.Item>
-                    <Form.Item style={{ marginTop: '32px' }}>
-                        <Button type="primary" htmlType="submit" block style={{ height: '54px', borderRadius: '12px', fontSize: '16px' }}>
+                    <Form.Item style={{ marginTop: '32px', marginBottom: '8px' }}>
+                        <Button type="primary" htmlType="submit" block style={{ height: '54px', borderRadius: '12px', fontSize: '16px', fontWeight: '600', background: 'linear-gradient(135deg, #1890ff 0%, #722ed1 100%)', border: 'none' }}>
                             Daxil ol
                         </Button>
                     </Form.Item>
+                    <Button 
+                        type="text" 
+                        block 
+                        icon={<ArrowLeftOutlined />} 
+                        onClick={() => navigate('/berber-aydin')}
+                        style={{ height: '40px', color: '#64748b', fontSize: '14px' }}
+                    >
+                        Sifariş səhifəsinə qayıt
+                    </Button>
                 </Form>
             </Card>
         </div>
