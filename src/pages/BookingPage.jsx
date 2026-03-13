@@ -239,6 +239,16 @@ const BookingPage = () => {
                     textAlign: 'center',
                     color: '#fff'
                 }}>
+                    <img 
+                        src="/siramatik-icon-removebg.png" 
+                        alt="SiraMatik Logo" 
+                        style={{ 
+                            width: '90px', 
+                            height: '90px', 
+                            marginBottom: '16px',
+                            objectFit: 'contain'
+                        }} 
+                    />
                     <Title level={3} style={{ color: '#fff', margin: '0 0 8px 0' }}>SiraMatik</Title>
                     <Text style={{ color: 'rgba(255,255,255,0.8)', fontSize: '15px' }}>Gələcəyin Rezervasiya Sistemi</Text>
                 </div>
