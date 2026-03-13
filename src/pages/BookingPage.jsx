@@ -122,17 +122,11 @@ const BookingPage = () => {
 
     return (
         <div className={styles.container}>
-            <div className={styles.header} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <div className={styles.header}>
                 <div>
                     <Title level={2}><UserOutlined /> {provider.full_name}</Title>
                     <Text type="secondary">Xidmət qeydiyyat sistemi</Text>
                 </div>
-                <Button 
-                    type="text" 
-                    icon={<InfoCircleOutlined style={{ fontSize: '20px', color: '#1890ff' }} />} 
-                    onClick={() => setIsAboutModalOpen(true)}
-                    style={{ padding: '4px' }}
-                />
             </div>
 
             <Row gutter={[24, 24]} className={styles.contentRow}>
@@ -183,12 +177,49 @@ const BookingPage = () => {
                 </Col>
             </Row>
 
+            <div 
+                className="pulse-circle"
+                onClick={() => setIsAboutModalOpen(true)}
+                style={{ 
+                    position: 'fixed',
+                    right: 24, 
+                    bottom: 84, 
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    boxShadow: '0 0 15px rgba(99, 102, 241, 0.5)',
+                    zIndex: 1000,
+                    color: '#fff',
+                    border: '1.5px solid rgba(255,255,255,0.4)'
+                }}
+            >
+                <RocketOutlined style={{ fontSize: '18px' }} />
+            </div>
+
             <FloatButton
                 icon={<LoginOutlined />}
                 tooltip={<div>Admin Girişi</div>}
                 onClick={() => window.location.href = '/login'}
                 style={{ right: 24, bottom: 24 }}
             />
+
+            <style>{`
+                @keyframes heartbeat-circle {
+                    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.6); }
+                    14% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+                    28% { transform: scale(1); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.6); }
+                    42% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+                    70% { transform: scale(1); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+                }
+                .pulse-circle {
+                    animation: heartbeat-circle 2.5s infinite ease-in-out;
+                }
+            `}</style>
 
             <Modal
                 title="SiraMatik haqqında"
@@ -244,11 +275,11 @@ const BookingPage = () => {
                     <div style={{ marginBottom: '24px' }}>
                         <Title level={5} style={{ marginBottom: '12px' }}>Texnoloji Stack</Title>
                         <Space wrap size={[12, 12]}>
-                            <Tag color="blue" bordered={false}>Java</Tag>
-                            <Tag color="red" bordered={false}>PHP</Tag>
-                            <Tag color="cyan" bordered={false}>MySQL</Tag>
-                            <Tag color="purple" bordered={false}>React</Tag>
-                            <Tag color="orange" bordered={false}>React Native (Mobile)</Tag>
+                            <Tag color="blue" variant="filled">Java</Tag>
+                            <Tag color="red" variant="filled">PHP</Tag>
+                            <Tag color="cyan" variant="filled">MySQL</Tag>
+                            <Tag color="purple" variant="filled">React</Tag>
+                            <Tag color="orange" variant="filled">React Native (Mobile)</Tag>
                         </Space>
                     </div>
 
