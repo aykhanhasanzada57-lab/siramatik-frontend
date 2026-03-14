@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button, Card, Typography, message } from 'antd';
+import { Form, Input, Button, Card, Typography, App } from 'antd';
 import { UserOutlined, LockOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import { AuthAPI } from '../api';
 import { useNavigate } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const { Title } = Typography;
 
 const LoginPage = () => {
+    const { message } = App.useApp();
     const navigate = useNavigate();
 
     const onFinish = async (values) => {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form, TimePicker, InputNumber, Checkbox, Button, Space, Typography, Card, Spin, message, Divider } from 'antd';
+import { Form, TimePicker, InputNumber, Checkbox, Button, Space, Typography, Card, Spin, App, Divider } from 'antd';
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import { ProviderAPI } from '../api';
 import dayjs from 'dayjs';
@@ -7,6 +7,7 @@ import dayjs from 'dayjs';
 const { Title, Text } = Typography;
 
 const SettingsSection = () => {
+    const { message } = App.useApp();
     const [loading, setLoading] = useState(false);
     const [saving, setSaving] = useState(false);
     const [schedule, setSchedule] = useState([]);

@@ -3,7 +3,7 @@ import { Row, Col, Button, Skeleton, Result } from 'antd';
 import { ClockCircleOutlined } from '@ant-design/icons';
 import styles from '../styles/SlotPicker.module.scss';
 
-const SlotPicker = ({ slots, loading, selectedSlot, onSelect }) => {
+const SlotPicker = ({ slots, loading, selectedSlot, onSelect, isAdmin }) => {
 
     if (loading) {
         return <Skeleton active paragraph={{ rows: 4 }} />;
@@ -34,13 +34,13 @@ const SlotPicker = ({ slots, loading, selectedSlot, onSelect }) => {
                         <Button
                             type={btnType}
                             block
-                            disabled={!isAvailable}
+                            disabled={!isAvailable && !(isAdmin && isPast)}
                             className={`
                                 ${styles.slotBtn} 
                                 ${!isAvailable && !isPast ? styles.booked : ''}
                                 ${isPast ? styles.past : ''}
                             `}
-                            onClick={() => isAvailable && onSelect(slot)}
+                            onClick={() => (isAvailable || (isAdmin && isPast)) && onSelect(slot)}
                             icon={<ClockCircleOutlined />}
                         >
                             {slot.time}
