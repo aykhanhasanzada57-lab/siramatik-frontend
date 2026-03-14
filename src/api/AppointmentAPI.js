@@ -21,4 +21,13 @@ export const AppointmentAPI = {
     });
     return response.data;
   },
+
+  /**
+   * Delete an appointment (Admin only)
+   * @param {number|string} id
+   */
+  delete: async (id) => {
+    const response = await api.delete(`/appointments/${id}`);
+    return response.data;
+  },
 };

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { UserOutlined, CalendarOutlined, LoginOutlined, InfoCircleOutlined, GithubOutlined, RocketOutlined, WhatsAppOutlined, PhoneOutlined } from '@ant-design/icons';
-import { Spin, Row, Col, Typography, Card, Calendar, message, Badge, Result, Button, FloatButton, Modal, Space, Tooltip, Divider, Tag } from 'antd';
+import { Spin, Row, Col, Typography, Card, Calendar, Badge, Result, Button, FloatButton, Modal, Space, Tooltip, Divider, Tag, App } from 'antd';
 import dayjs from 'dayjs';
 import { ProviderAPI, AppointmentAPI } from '../api';
 import BookingForm from '../components/BookingForm';
@@ -14,6 +14,7 @@ dayjs.locale('az');
 const { Title, Text } = Typography;
 
 const BookingPage = () => {
+    const { message } = App.useApp();
     const { slug } = useParams();
     const [loading, setLoading] = useState(true);
     const [provider, setProvider] = useState(null);

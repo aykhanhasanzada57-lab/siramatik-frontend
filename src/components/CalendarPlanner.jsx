@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Calendar, Badge, Modal, Form, TimePicker, InputNumber, Checkbox, Button, Space, Typography, Spin, message, Card, Alert } from "antd";
+import { Calendar, Badge, Modal, Form, TimePicker, InputNumber, Checkbox, Button, Space, Typography, Spin, App, Card, Alert } from "antd";
 import { PlusOutlined, DeleteOutlined, InfoCircleOutlined, CalendarOutlined, CheckCircleOutlined } from "@ant-design/icons";
 import { ProviderAPI, AppointmentAPI } from "../api";
 import dayjs from "dayjs";
@@ -7,6 +7,7 @@ import dayjs from "dayjs";
 const { Text, Title } = Typography;
 
 const CalendarPlanner = () => {
+    const { message } = App.useApp();
     const [selectedDate, setSelectedDate] = useState(dayjs());
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -119,7 +120,7 @@ const CalendarPlanner = () => {
     };
 
     return (
-        <Card bordered={false}>
+        <Card variant="borderless">
             <Title level={4}>Təqvim Planlayıcı</Title>
             <Text type="secondary" style={{ marginBottom: '20px', display: 'block' }}>
                 Hər hansı bir tarixin üzərinə klikləyərək həmin günü <strong>İş Günü</strong> kimi aktivləşdirə və saatları seçə bilərsiniz.
@@ -146,10 +147,10 @@ const CalendarPlanner = () => {
                 cancelText="Bağla"
             >
                 {loading ? <Spin /> : dailyData && (
-                    <Space direction="vertical" style={{ width: '100%' }} size="middle">
+                    <Space orientation="vertical" style={{ width: '100%' }} size="middle">
                         {!dailyData.is_active && dailyData._isNew && (
                             <Alert
-                                message="Bu gün hələ quraşdırılmayıb"
+                                title="Bu gün hələ quraşdırılmayıb"
                                 description="Siz bu günü aktivləşdirməyincə müştərilər həmin tarixdə növbə götürə bilməyəcəklər."
                                 type="warning"
                                 showIcon
@@ -159,7 +160,7 @@ const CalendarPlanner = () => {
 
                         {dailyData.is_active && (
                             <Alert
-                                message="Bu gün aktiv iş günüdür"
+                                title="Bu gün aktiv iş günüdür"
                                 type="success"
                                 showIcon
                                 icon={<CheckCircleOutlined />}
